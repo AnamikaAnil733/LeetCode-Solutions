@@ -10,26 +10,19 @@
  * @return {ListNode}
  */
 var mergeNodes = function (head) {
+    let w = head
     let current = head.next
     let sum = 0
-    let a = []
     while (current) {
         if (current.val == 0) {
-            a.push(sum)
+            w.val = sum
+            w.next = current.next
+            w = w.next
             sum = 0
+        } else {
+            sum += current.val
         }
-        sum += current.val
         current = current.next
     }
-    let c = head
-    let i = 0
-    let prev = null
-    while (i < a.length) {
-        c.val = a[i]
-        i++
-        prev = c
-        c = c.next
-    }
-    prev.next = null
     return head
 };
